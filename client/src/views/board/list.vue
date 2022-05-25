@@ -1,6 +1,8 @@
 <template>
   <div class="root">
-    <table>
+    <mjc-header></mjc-header>
+    <div class="table-container">
+       <table>
       <thead>
         <tr>
           <th width="80px">글번호</th>
@@ -23,7 +25,8 @@
          <td class="text-center">{{board.writeTime | dateFormat}}</td>
         </tr>
       </tbody>
-    </table>
+    </table> 
+    </div>
 
     <v-pagination
       v-model="page"
@@ -39,7 +42,12 @@
 
 <script>
 import moment from "moment";
+import MjcHeader from "@/components/MjcHeader";
+
 export default {
+  components:{
+    MjcHeader: MjcHeader
+  },
   data() {
     return {
       page: 1,
@@ -88,7 +96,7 @@ export default {
 </script>
 
 <style scoped>
-.root {
+.table-container {
   width: 700px;
   margin: 0 auto;
 }

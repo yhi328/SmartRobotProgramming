@@ -8,19 +8,29 @@
         label="패스워드"
       ></v-text-field>
 
+      <!--
       <v-btn class="mr-2" @click="login">로그인</v-btn>
-      <v-btn @click="moveJoin">회원가입</v-btn>
+      css에서는 -이 하나의 표식으로 인식되기 때문에 변경--> 
+      <mjc-btn  :background="loginbtnBg" fontcolor="white" @click="login" @changeBackground="loginBtnBackground"> 로그인 </mjc-btn>
+      <mjc-btn class="mt-s" background="#0000ff" fontcolor="white"> 회원가입 </mjc-btn>
+      <!--<v-btn @click="moveJoin">회원가입</v-btn>-->
     </div>
   </v-layout>
 </template>
 
 
 <script>
-import HelloWorld from "../components/HelloWorld";
+import HelloWorld from "../components/HelloWorld";  //..은 상대 경로를 사용(상위디렉토리의)
+import MjcBtn from "@/components/MjcBtn";  //@는 src 폴더(를 기준으로 import)
+
 export default {
+  components:{
+    MjcBtn
+  },
   name: "Home",
   data() {
     return {
+      loginbtnBg: "#ff0000",
       form: {
         id: "",
         password: "",
@@ -29,7 +39,10 @@ export default {
     };
   },
   methods: {
-    login() {
+    loginBtnBackground(background){
+      this.loginbtnBg=background;
+    },
+    login(background) {
       //TODO : 폼체크하는거 추가해야됨
       if (this.form.id == "") {
         window.alert("아이디를 입력해주세요");
