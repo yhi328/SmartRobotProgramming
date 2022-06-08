@@ -5,7 +5,7 @@
     <v-text-field v-model="form.title" label="글제목"></v-text-field>
     <v-textarea v-model="form.body" label="내용"></v-textarea>
     <div class="text-center">
-      <v-btn color="primary" @click="submit">글쓰기</v-btn>
+      <v-btn color="primary" @click="submit">수정</v-btn>
     </div>
   </div>
 </div>
@@ -25,7 +25,17 @@ export default {
       },
     };
   },
+  mounted(){
+    this.getBoardItem()
+  },
   methods: {
+    getBoardItem(){
+      this.axios
+      .post("/api/board/item", { id: this.$route.params.id})
+      .then((result)=> {
+        this.form = result.data.board;
+      });
+    },
     submit() {
       if (this.form.title == "") {
         window.alert("제목을 입력해주세요");
@@ -35,10 +45,10 @@ export default {
         window.alert("내용을 입력해주세요");
         return;
       }
-      // TODO : 서버에 전송해서 글쓰기 시키기
-      this.axios.post("/api/board/write", this.form).then((result) => {
+      // TODO : 서버에 전송해서 게시글 수정하기
+      this.axios.post("/api/board/modify", this.form).then((result) => {
         if (result.data.result == "ok") {
-          window.alert("글이 작성되었습니다.");
+          window.alert("글이 수정되었습니다.");
           this.$router.go(-1);
         }
       });

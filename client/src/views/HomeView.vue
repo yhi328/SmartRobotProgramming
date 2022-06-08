@@ -10,10 +10,10 @@
 
       <!--
       <v-btn class="mr-2" @click="login">로그인</v-btn>
-      css에서는 -이 하나의 표식으로 인식되기 때문에 변경--> 
+      css에서는 -이 하나의 표식으로 인식되기 때문에 변경!--> 
       <mjc-btn  :background="loginbtnBg" fontcolor="white" @click="login" @changeBackground="loginBtnBackground"> 로그인 </mjc-btn>
       <mjc-btn class="mt-s" background="#0000ff" fontcolor="white"> 회원가입 </mjc-btn>
-      <!--<v-btn @click="moveJoin">회원가입</v-btn>-->
+      <!--<v-btn @click="moveJoin">회원가입</v-btn>!-->
     </div>
   </v-layout>
 </template>
