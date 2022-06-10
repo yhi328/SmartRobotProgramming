@@ -35,7 +35,7 @@
     ></v-pagination>
 
     <div class="text-right mt-2">
-      <v-btn color="primary" @click="moveWrite">글쓰기</v-btn>
+      <v-btn v-if="$store.state.user" color="primary" @click="moveWrite">글쓰기</v-btn>
     </div>
   </div>
 </template>

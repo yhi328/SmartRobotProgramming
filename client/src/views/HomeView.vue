@@ -12,7 +12,7 @@
       <v-btn class="mr-2" @click="login">로그인</v-btn>
       css에서는 -이 하나의 표식으로 인식되기 때문에 변경!--> 
       <mjc-btn  :background="loginbtnBg" fontcolor="white" @click="login" @changeBackground="loginBtnBackground"> 로그인 </mjc-btn>
-      <mjc-btn class="mt-s" background="#0000ff" fontcolor="white"> 회원가입 </mjc-btn>
+      <mjc-btn class="mt-s" background="#0000ff" fontcolor="white" @click="moveJoin"> 회원가입 </mjc-btn>
       <!--<v-btn @click="moveJoin">회원가입</v-btn>!-->
     </div>
   </v-layout>
@@ -55,6 +55,8 @@ export default {
       //TODO : 서버에 전송해서 로그인 시키기
       this.axios.post("/api/users/login", this.form).then((result) => {
         if (result.data.result == "ok") {
+          console.log(result.data.user);
+          this.$store.commit("setUser", result.data.user); // 로그인한 정보를 user로 보내고 저장하는 함수
           this.$router.push("/board");
         }
         if (result.data.result == "fail") {
