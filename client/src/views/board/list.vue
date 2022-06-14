@@ -22,18 +22,20 @@
             </div>
          </td>
          <td class="text-center">{{board.viewCount}}</td>
-         <td class="text-center">{{board.writeTime | dateFormat}}</td>
+         <td class="text-center">{{board.writeTime | dateFormat}}</td> 
         </tr>
       </tbody>
     </table> 
     </div>
 
+    <!-- 페이지 번호 -->
     <v-pagination
       v-model="page"
       @input="changePage"
       :length="pageCount"
     ></v-pagination>
 
+    <!-- 로그인 된 상태일 때 글쓰기 버튼 누르면 글쓰기 페이지로 넘어감-->
     <div class="text-right mt-2">
       <v-btn v-if="$store.state.user" color="primary" @click="moveWrite">글쓰기</v-btn>
     </div>
@@ -41,7 +43,9 @@
 </template>
 
 <script>
+// 날짜 라이브러리 moment 추가
 import moment from "moment";
+// 헤더 추가
 import MjcHeader from "@/components/MjcHeader";
 
 export default {
@@ -55,11 +59,13 @@ export default {
       boardList: [],
     };
   },
+  // format 함수를 이용하여 원하는 날짜 형태 지정
   filters: {
     dateFormat(dateStr) {
       return moment(dateStr).format("YYYY-MM-DD HH:mm");
     },
   },
+  /* 게시물 올릴 때 mounted() 이용 */
   mounted() {
     //TODO : 서버에서 게시물 목록 가져와서 넣기
     // for (var i = 0; i < 10; i++) {

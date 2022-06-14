@@ -4,6 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+/* express-session 모듈 사용 */
 var session = require("express-session")
 var MysqlStore = require("express-mysql-session")(session)
 var options = {
@@ -15,7 +16,7 @@ var options = {
 };
 var sessionStore = new MysqlStore(options)
 
-
+/* sequelize로 MySQL(데이터베이스)을 연결함 */
 const { Sequelize } = require('sequelize');
 global.sequelize = new Sequelize('board', 'root', 'itc801', {
   host: 'localhost',
@@ -23,11 +24,8 @@ global.sequelize = new Sequelize('board', 'root', 'itc801', {
   logging: false
 });
 
+/* require()를 통해 model.js를 불러옴 */
 require("./model.js")
-
-
-
-
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -35,7 +33,7 @@ var boardRouter = require('./routes/board');
 
 var app = express();
 app.use(session({
-  key: 'session_cookie_name',
+  key: 'session_cookie_name', // 아무거나 넣어도 되지만 바뀌면 안 됨 
   secret: 'session_cookie_secret',
   store: sessionStore,
   resave: false,

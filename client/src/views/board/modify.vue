@@ -1,3 +1,4 @@
+<!-- 게시글 수정--> 
 <template>
 <div>
 <mjc-header></mjc-header>

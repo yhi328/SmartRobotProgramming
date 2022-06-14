@@ -1,3 +1,4 @@
+<!-- 커스텀할 수 있는 버튼을 컴포넌트로 만듦 -->
 <template>
   <div 
     class="mjc-btn" 

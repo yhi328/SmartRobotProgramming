@@ -1,3 +1,4 @@
+/* localhost:3000/users/ 를 처리 */
 var express = require('express');
 var router = express.Router();
 
@@ -6,6 +7,7 @@ router.get('/', function (req, res, next) {
   res.send('respond with a resource');
 });
 
+// 이미 회원가입을 한 user인지 체크
 router.post("/join", async function (req, res) {
   var body = req.body
   console.log(body)
@@ -67,7 +69,7 @@ router.post('/info', async (req, res) => {
     })
   }
 })
-
+// 로그아웃하면 세션을 삭제함
 router.post("/logout", async (req, res) => {
   req.session.destroy()
   res.json({

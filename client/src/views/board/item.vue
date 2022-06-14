@@ -1,3 +1,4 @@
+<!-- 게시글 상세 페이지 -->
 <template>
   <div class="root" v-if="board != null">
   <mjc-header></mjc-header>
@@ -14,7 +15,8 @@
         <div class="text-center">
             <v-btn color="primary" @click="modifyBoard">수정</v-btn>
             <v-btn color="error" @click="removeBoard">삭제</v-btn>
-        </div>    </div>
+        </div>    
+    </div>
   </div>
 </template>
 

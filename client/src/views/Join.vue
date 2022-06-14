@@ -1,3 +1,4 @@
+<!-- 회원가입 페이지 -->
 <template>
   <v-layout class="background" align-center justify-center>
     <div class="form">
@@ -22,6 +23,7 @@
 <script>
 export default {
   data() {
+    // 변수를 저장하는 영역
     return {
       form: {
         id: "",
@@ -53,12 +55,12 @@ export default {
       this.axios.post("/api/users/join", this.form).then((result) => {
         console.log(result);
         if (result.data.result == "ok") {
-          //회원가입이 성공한경우
+          //회원가입이 성공한 경우
           window.alert("회원가입이 완료되었습니다");
           this.$router.push("/");
         }
         if (result.data.result == "fail") {
-          //회원가입이 실패한경우
+          //회원가입이 실패한 경우
           window.alert(result.data.message);
         }
       });
